@@ -1450,11 +1450,7 @@ function DocsApp() {
     setActiveSection(id);
     window.location.hash = id;
     setTimeout(() => {
-      const el = scrollToElementWithOffset(id, 84);
-      if (el) {
-        el.classList.add('ring-2', 'ring-blue-500', 'ring-offset-8', 'transition-all', 'duration-300', 'rounded-xl');
-        setTimeout(() => el.classList.remove('ring-2', 'ring-blue-500', 'ring-offset-8'), 1800);
-      }
+      scrollToElementWithOffset(id, 84);
     }, 50);
   };
 
