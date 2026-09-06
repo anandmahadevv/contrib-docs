@@ -25,6 +25,11 @@
   <meta property="twitter:description" content="Instant, blobless git checkouts with 94%+ bandwidth savings, isolated worktrees, and zero telemetry for open-source contributors." />
   <meta property="twitter:image" content="https://anandmahadevv.github.io/contrib-docs/og-image.png" />
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="og-image.png" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  
   <!-- Inter font & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,6 +161,19 @@ const { useState, useEffect, useMemo, useRef } = React;
 const el = React.createElement;
 
 // SVG Icons
+const ContribBrandIcon = ({ className = "w-5 h-5" }) => el("svg", { className, viewBox: "0 0 24 24", fill: "none" },
+  el("rect", { width: "24", height: "24", rx: "6", fill: "url(#contribBrandGrad)" }),
+  el("path", { d: "M7 6C7 4.89543 7.89543 4 9 4C10.1046 4 11 4.89543 11 6C11 6.92825 10.3654 7.7081 9.5 7.937V16.063C10.3654 16.2919 11 17.0718 11 18C11 19.1046 10.1046 20 9 20C7.89543 20 7 19.1046 7 18C7 17.0718 7.6346 16.2919 8.5 16.063V7.937C7.6346 7.7081 7 6.92825 7 6Z", fill: "#38BDF8" }),
+  el("path", { d: "M9.5 10C13 10 16 12 16 15.5V16.063C16.8654 16.2919 17.5 17.0718 17.5 18C17.5 19.1046 16.6046 20 15.5 20C14.3954 20 13.5 19.1046 13.5 18C13.5 17.0718 14.1346 16.2919 15 16.063V15.5C15 13.5 13 12 9.5 12V10Z", fill: "#34D399" }),
+  el("path", { d: "M18.5 5L14 11H17L15.5 17L20 11H17L18.5 5Z", fill: "#F59E0B" }),
+  el("defs", null,
+    el("linearGradient", { id: "contribBrandGrad", x1: "0", y1: "0", x2: "24", y2: "24", gradientUnits: "userSpaceOnUse" },
+      el("stop", { stopColor: "#0F172A" }),
+      el("stop", { offset: "1", stopColor: "#020617" })
+    )
+  )
+);
+
 const StarIcon = ({ className = "w-4 h-4" }) => el("svg", { className, viewBox: "0 0 24 24", fill: "currentColor" },
   el("polygon", { points: "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" })
 );
@@ -1616,9 +1634,7 @@ function DocsApp() {
     el("header", { className: "sticky top-0 z-30 h-16 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 flex items-center justify-between" },
       el("div", { className: "flex items-center gap-6" },
         el("a", { href: "#overview", onClick: () => handleSelectSection('overview'), className: "flex items-center gap-2.5 cursor-pointer" },
-          el("div", { className: "w-7 h-7 bg-slate-900 dark:bg-blue-600 text-white rounded-lg flex items-center justify-center" },
-            el(StarIcon, { className: "w-3.5 h-3.5 fill-white text-white" })
-          ),
+          el(ContribBrandIcon, { className: "w-7 h-7 shadow-xs" }),
           el("span", { className: "font-bold tracking-tight text-slate-900 dark:text-white text-base" }, "gsoc-contrib"),
           el("span", { className: "text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono px-2 py-0.5 rounded-full" }, "v0.4.0")
         ),
@@ -2214,7 +2230,7 @@ function DocsApp() {
     el("footer", { className: "border-t border-slate-200 dark:border-slate-800 py-8 px-6 text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950" },
       el("div", { className: "max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4" },
         el("div", { className: "flex items-center gap-2" },
-          el(StarIcon, { className: "w-3.5 h-3.5 text-slate-900 dark:text-slate-100 fill-slate-900 dark:fill-slate-100" }),
+          el(ContribBrandIcon, { className: "w-5 h-5 shrink-0" }),
           el("span", { className: "font-semibold text-slate-800 dark:text-slate-200" }, "gsoc-contrib (`contrib`)"),
           el("span", null, "— Open source contribution workspace manager under MIT License")
         ),

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="url(#bgGradient)"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="url(#borderGradient)" stroke-width="2" fill="none"/>
+  
+  <!-- Git Branch Worktree & Speed Spark -->
+  <path d="M22 18C22 15.7909 23.7909 14 26 14C28.2091 14 30 15.7909 30 18C30 19.8565 28.7308 21.4162 27 21.874V42.126C28.7308 42.5838 30 44.1435 30 46C30 48.2091 28.2091 50 26 50C23.7909 50 22 48.2091 22 46C22 44.1435 23.2692 42.5838 25 42.126V21.874C23.2692 21.4162 22 19.8565 22 18Z" fill="#38BDF8"/>
+  <path d="M27 26C34 26 40 30 40 37V42.126C41.7308 42.5838 43 44.1435 43 46C43 48.2091 41.2091 50 39 50C36.7909 50 35 48.2091 35 46C35 44.1435 36.2692 42.5838 38 42.126V37C38 33 34 30 27 30V26Z" fill="#34D399"/>
+  
+  <!-- Lightning Speed Spark Core -->
+  <path d="M46 16L37 28H44L41 40L50 28H43L46 16Z" fill="#F59E0B"/>
+  
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="borderGradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8" stop-opacity="0.8"/>
+      <stop offset="0.5" stop-color="#34D399" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#818CF8" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+</svg>
