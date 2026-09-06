@@ -981,7 +981,6 @@ const SEARCH_INDEX = [
   { id: "overview", title: "Overview & Problem Statement", category: "Getting Started", badge: "Concept", keywords: "gsoc open source disk space bandwidth blobless worktree clone 94.2% sub-second monorepo problems", description: "Why gsoc-contrib was built: massive disk savings, blobless clones, and sub-second workspace isolation." },
   { id: "installation", title: "Installation & Setup", category: "Getting Started", badge: "Setup", keywords: "npm install -g gsoc-contrib npx python pip contrib-cli binary global package prerequisites", description: "Install globally via npm, run on demand with npx, or install Python package via pip." },
   { id: "quickstart", title: "Quick Start Tutorial", category: "Getting Started", badge: "Tutorial", keywords: "quickstart workflow tutorial start work sync submit pull request pr 6 steps", description: "6-step contribution workflow from picking an issue URL to published pull request." },
-  { id: "terminal-demo", title: "Interactive Terminal & TUI Showcase", category: "Showcase", badge: "Demo", keywords: "terminal asciinema interactive tui demo simulator blobless start dashboard sync search", description: "Interactive simulated terminal demonstration of contrib start, dashboard TUI, and sync." },
   { id: "architecture", title: "Blobless Git Architecture & Savings Calculator", category: "Architecture", badge: "Architecture", keywords: "architecture blobless flowchart calculator svg filter blob none worktree bare repo git objects savings", description: "How contrib achieves 95% disk savings with shared bare repositories and git worktrees with flowchart." },
   { id: "cmd-start", title: "contrib start <issue-or-repo>", category: "Workspace Commands", badge: "Command", keywords: "start clone sparse branch fork clean dry-run no-open editor issue url blobless worktree", description: "Create an isolated blobless git worktree workspace linked directly to a GitHub issue." },
   { id: "cmd-open", title: "contrib open [workspace-id]", category: "Workspace Commands", badge: "Command", keywords: "open ide editor cursor vscode zed nvim vim subl idea antigravity print launch", description: "Launch your workspace in Cursor, VS Code, Zed, Neovim, JetBrains, or Antigravity." },
@@ -1358,9 +1357,8 @@ function DocsApp() {
       ]
     },
     {
-      group: "Visual Showcase",
+      group: "Architecture & Performance",
       items: [
-        { id: "terminal-demo", label: "Interactive Terminal & TUI" },
         { id: "architecture", label: "Architecture & Flowchart" }
       ]
     },
@@ -1475,12 +1473,6 @@ function DocsApp() {
       { id: "qs-5", title: "5. Sync Upstream", level: 2 },
       { id: "qs-6", title: "6. Submit Pull Request", level: 2 }
     ],
-    "terminal-demo": [
-      { id: "td-start", title: "Instant Blobless Clone Demo", level: 2 },
-      { id: "td-dash", title: "Interactive TUI Dashboard", level: 2 },
-      { id: "td-sync", title: "Upstream Rebase & PR", level: 2 },
-      { id: "td-search", title: "Good First Issue Discovery", level: 2 }
-    ],
     architecture: [
       { id: "arch-flowchart", title: "Visual Architecture Flowchart", level: 2 },
       { id: "arch-calculator", title: "Savings Calculator", level: 2 },
@@ -1553,7 +1545,6 @@ function DocsApp() {
         ),
         el("div", { className: "hidden lg:flex items-center gap-5 text-sm font-medium text-slate-600 dark:text-slate-400" },
           el("a", { href: "#overview", onClick: () => handleSelectSection('overview'), className: "text-slate-900 dark:text-white font-semibold cursor-pointer" }, "Docs"),
-          el("a", { href: "#terminal-demo", onClick: () => handleSelectSection('terminal-demo'), className: "hover:text-black dark:hover:text-white cursor-pointer" }, "Showcase"),
           el("a", { href: "#architecture", onClick: () => handleSelectSection('architecture'), className: "hover:text-black dark:hover:text-white cursor-pointer" }, "Architecture"),
           el("a", { href: "#cookbook", onClick: () => handleSelectSection('cookbook'), className: "hover:text-black dark:hover:text-white cursor-pointer" }, "Cookbook"),
           el("a", { href: "#troubleshooting-faq", onClick: () => handleSelectSection('troubleshooting-faq'), className: "hover:text-black dark:hover:text-white cursor-pointer" }, "FAQ"),
@@ -1742,16 +1733,7 @@ function DocsApp() {
           el(PageNavigationFooter, { currentId: "quickstart", navItems: allNavItems, onNavigate: handleSelectSection })
         ),
 
-        // SECTION: Interactive Terminal Showcase (NEW!)
-        el("section", { id: "terminal-demo", className: "mb-16 pt-6 border-t border-slate-100 dark:border-slate-800/80 scroll-mt-24" },
-          el("div", { className: "text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1 font-mono" }, "Showcase"),
-          el("h2", { className: "text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-3" }, "Interactive Terminal & TUI Showcase"),
-          el("p", { className: "text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6" },
-            "Experience the sub-second workspace initialization, interactive Terminal User Interface (TUI), and automated git synchronization in action without running terminal commands locally."
-          ),
-          el(TerminalShowcase, null),
-          el(PageNavigationFooter, { currentId: "terminal-demo", navItems: allNavItems, onNavigate: handleSelectSection })
-        ),
+        
 
         // SECTION: Architecture & Savings Calculator (ENHANCED!)
         el("section", { id: "architecture", className: "mb-16 pt-6 border-t border-slate-100 dark:border-slate-800/80 scroll-mt-24" },
