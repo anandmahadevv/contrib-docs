@@ -5,8 +5,7 @@
   "description": "Official documentation portal for gsoc-contrib (contrib) CLI",
   "scripts": {
     "dev": "npx -y serve -l 5173 .",
-    "start": "npx -y serve -l 5173 .",
-    "build": "echo 'Static docs ready'"
+    "start": "npx -y serve -l 5173 ."
   },
   "keywords": [
     "documentation",
