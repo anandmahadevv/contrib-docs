@@ -842,6 +842,7 @@ const ChangelogTimeline = () => {
   return el("div", { className: "my-8 space-y-8" },
     releases.map((rel, rIdx) => el("div", {
       key: rel.version,
+      id: `changelog-${rel.version.replace(/\./g, '-')}`,
       className: "p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs relative"
     },
       el("div", { className: "flex flex-wrap items-center justify-between gap-2 mb-2" },
@@ -870,7 +871,7 @@ const CookbookRecipes = () => {
         el(BookOpenIcon, { className: "w-4 h-4" }),
         el("span", null, "Recipe 1: Massive Monorepos")
       ),
-      el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Contributing to 10GB+ Repositories (Kubernetes, Chromium) with Cone Sparse Mode"),
+      el("h3", { id: "cookbook-massive-monorepos", className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Contributing to 10GB+ Repositories (Kubernetes, Chromium) with Cone Sparse Mode"),
       el("p", { className: "text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3" },
         "When fixing a localized bug in a massive monorepo, checking out all 50,000 files is wasteful. Combine blobless cloning with cone sparse-checkout to restrict your local disk to only the target package:"
       ),
@@ -883,7 +884,7 @@ const CookbookRecipes = () => {
         el(BookOpenIcon, { className: "w-4 h-4" }),
         el("span", null, "Recipe 2: Multi-Issue Parallel Workspaces")
       ),
-      el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Working on 3 Issues Simultaneously Without Branch Switching"),
+      el("h3", { id: "cookbook-parallel-workspaces", className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Working on 3 Issues Simultaneously Without Branch Switching"),
       el("p", { className: "text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3" },
         "Traditional git forces you to git stash or commit half-finished work whenever you switch branches. With contrib worktrees, each issue lives in an isolated filesystem directory pointing to the same local git cache:"
       ),
@@ -896,7 +897,7 @@ const CookbookRecipes = () => {
         el(BookOpenIcon, { className: "w-4 h-4" }),
         el("span", null, "Recipe 3: Heavy Compiled Stacks (Rust, C++, Go)")
       ),
-      el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Sharing Cargo & Build Caches Across Workspaces"),
+      el("h3", { id: "cookbook-compiled-stacks", className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Sharing Cargo & Build Caches Across Workspaces"),
       el("p", { className: "text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3" },
         "In languages like Rust or C++, compiling a new workspace from scratch can take 15 minutes. Share your compiler artifact cache across all contrib worktrees via environment variables:"
       ),
@@ -909,7 +910,7 @@ const CookbookRecipes = () => {
         el(BookOpenIcon, { className: "w-4 h-4" }),
         el("span", null, "Recipe 4: Automated CI/CD Reproduction")
       ),
-      el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Headless Reproduction in GitHub Actions"),
+      el("h3", { id: "cookbook-ci-cd-reproduction", className: "text-lg font-bold text-slate-900 dark:text-white mb-2" }, "Headless Reproduction in GitHub Actions"),
       el("p", { className: "text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3" },
         "You can run contrib headlessly in CI scripts to set up automated testbeds for reported issues:"
       ),
@@ -937,7 +938,7 @@ const ContributingGuide = () => {
     el(CodeBlock, {
       code: "contrib start https://github.com/anandmahadevv/contrib-cli/issues/12 --worktree"
     }),
-    el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Development Setup & Architecture Seams"),
+    el("h3", { id: "contributing-architecture-seams", className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Development Setup & Architecture Seams"),
     el("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs" },
       el("div", { className: "p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900" },
         el("div", { className: "font-bold text-slate-900 dark:text-white mb-1" }, "Python Core Engine (src/contrib/)"),
@@ -957,11 +958,11 @@ const ContributingGuide = () => {
         )
       )
     ),
-    el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Running Tests"),
+    el("h3", { id: "contributing-running-tests", className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Running Tests"),
     el(CodeBlock, {
       code: "# Run Python pytest suite\npytest\n\n# Run Node.js test suite\nnpm test\n\n# Verify code formatting & typing\npytest --cov=contrib"
     }),
-    el("h3", { className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Submitting Your Changes"),
+    el("h3", { id: "contributing-submitting-pr", className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Submitting Your Changes"),
     el("p", { className: "text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3" },
       "Once your tests pass, use `contrib submit` to push to your fork and generate a pull request:"
     ),
@@ -1512,67 +1513,65 @@ function DocsApp() {
     scrollToElementWithOffset(hId, 84);
   };
 
-  // Headings map for On This Page TOC
+  // Headings map for On This Page TOC (Descriptive & SEO-friendly Slugs)
   const headingsMap = {
     overview: [
-      { id: "overview-problem", title: "The Problem", level: 2 },
-      { id: "overview-solution", title: "The Solution", level: 2 },
-      { id: "overview-metrics", title: "Key Metrics & Savings", level: 2 }
+      { id: "overview-problem-statement", title: "The Problem", level: 2 },
+      { id: "overview-solution-architecture", title: "The Solution", level: 2 },
+      { id: "overview-key-metrics", title: "Key Metrics & Savings", level: 2 }
     ],
     installation: [
-      { id: "install-npx", title: "Option 1: Run with npx", level: 2 },
-      { id: "install-npm", title: "Option 2: Install via npm", level: 2 },
-      { id: "install-prereqs", title: "System Prerequisites", level: 2 }
+      { id: "installation-instant-runner", title: "Option 1: Instant Runner", level: 2 },
+      { id: "installation-global-install", title: "Option 2: Global Installation", level: 2 },
+      { id: "installation-system-prerequisites", title: "System Prerequisites", level: 2 }
     ],
     quickstart: [
-      { id: "qs-1", title: "1. Verify Environment", level: 2 },
-      { id: "qs-2", title: "2. Search for Tasks", level: 2 },
-      { id: "qs-3", title: "3. Spawn Workspace", level: 2 },
-      { id: "qs-4", title: "4. Open in Editor", level: 2 },
-      { id: "qs-5", title: "5. Sync Upstream", level: 2 },
-      { id: "qs-6", title: "6. Submit Pull Request", level: 2 }
+      { id: "quickstart-verify-environment", title: "1. Verify Environment", level: 2 },
+      { id: "quickstart-search-tasks", title: "2. Search for Tasks", level: 2 },
+      { id: "quickstart-spawn-workspace", title: "3. Spawn Workspace", level: 2 },
+      { id: "quickstart-launch-editor", title: "4. Open in Editor", level: 2 },
+      { id: "quickstart-sync-upstream", title: "5. Sync Upstream", level: 2 },
+      { id: "quickstart-submit-pull-request", title: "6. Submit Pull Request", level: 2 }
     ],
     architecture: [
-      { id: "arch-flowchart", title: "Visual Architecture Flowchart", level: 2 },
-      { id: "arch-calculator", title: "Savings Calculator", level: 2 },
-      { id: "arch-blobless", title: "How Blobless Clones Work", level: 2 },
-      { id: "arch-worktrees", title: "Git Worktrees Deep Dive", level: 2 }
+      { id: "architecture-visual-flowchart", title: "Visual Architecture Flowchart", level: 2 },
+      { id: "architecture-savings-calculator", title: "Savings Calculator", level: 2 }
     ],
     cookbook: [
-      { id: "cb-monorepos", title: "Massive Monorepos (Kubernetes)", level: 2 },
-      { id: "cb-parallel", title: "Multi-Issue Workspaces", level: 2 },
-      { id: "cb-compiled", title: "Heavy Compiled Stacks (Rust/C++)", level: 2 },
-      { id: "cb-ci", title: "Headless CI/CD Reproduction", level: 2 }
+      { id: "cookbook-massive-monorepos", title: "Massive Monorepos (Kubernetes)", level: 2 },
+      { id: "cookbook-parallel-workspaces", title: "Multi-Issue Workspaces", level: 2 },
+      { id: "cookbook-compiled-stacks", title: "Heavy Compiled Stacks (Rust/C++)", level: 2 },
+      { id: "cookbook-ci-cd-reproduction", title: "Headless CI/CD Reproduction", level: 2 }
     ],
     "troubleshooting-faq": [
-      { id: "faq-search", title: "Search Issues & Questions", level: 2 },
-      { id: "faq-proxy", title: "Corporate Proxies & VPNs", level: 2 },
-      { id: "faq-ratelimits", title: "GitHub API Rate Limits", level: 2 },
-      { id: "faq-interrupted", title: "Interrupted Checkouts", level: 2 },
-      { id: "faq-gitversion", title: "Git Version Requirements", level: 2 },
-      { id: "faq-windows", title: "Windows Long Paths", level: 2 },
-      { id: "faq-cleanup", title: "Reclaiming All Disk Space", level: 2 }
+      { id: "faq-search-questions", title: "Search Issues & Questions", level: 2 },
+      { id: "faq-corporate-proxies", title: "Corporate Proxies & VPNs", level: 2 },
+      { id: "faq-github-rate-limits", title: "GitHub API Rate Limits", level: 2 },
+      { id: "faq-interrupted-checkouts", title: "Interrupted Checkouts", level: 2 },
+      { id: "faq-git-version-requirement", title: "Git Version Requirements", level: 2 },
+      { id: "faq-windows-long-paths", title: "Windows Long Paths", level: 2 },
+      { id: "faq-reclaim-disk-space", title: "Reclaiming All Disk Space", level: 2 }
     ],
     changelog: [
-      { id: "v0-4-0", title: "v0.4.0 (Latest Release)", level: 2 },
-      { id: "v0-3-0", title: "v0.3.0 (Worktrees & Sparse)", level: 2 },
-      { id: "v0-2-0", title: "v0.2.0 (Blobless Core)", level: 2 },
-      { id: "v0-1-0", title: "v0.1.0 (Initial MVP)", level: 2 }
+      { id: "changelog-v0-4-0", title: "v0.4.0 (Latest Release)", level: 2 },
+      { id: "changelog-v0-3-0", title: "v0.3.0 (Worktrees & Sparse)", level: 2 },
+      { id: "changelog-v0-2-0", title: "v0.2.0 (Blobless Core)", level: 2 },
+      { id: "changelog-v0-1-0", title: "v0.1.0 (Initial MVP)", level: 2 }
     ],
     contributing: [
-      { id: "meta-dogfood", title: "Dogfooding Walkthrough", level: 2 },
-      { id: "meta-seams", title: "Architecture Seams", level: 2 },
-      { id: "meta-tests", title: "Running Test Suites", level: 2 },
-      { id: "meta-submit", title: "Submitting Your PR", level: 2 }
+      { id: "contributing-dogfooding-walkthrough", title: "Dogfooding Walkthrough", level: 2 },
+      { id: "contributing-architecture-seams", title: "Architecture Seams", level: 2 },
+      { id: "contributing-running-tests", title: "Running Test Suites", level: 2 },
+      { id: "contributing-submitting-pr", title: "Submitting Your PR", level: 2 }
     ],
     "privacy-security": [
-      { id: "sec-zero", title: "Zero Telemetry Guarantee", level: 2 },
-      { id: "sec-token", title: "Token Lifecycle & Redaction", level: 2 },
-      { id: "sec-sandbox", title: "Local Sandboxed Storage", level: 2 }
+      { id: "privacy-zero-telemetry", title: "Zero Telemetry Guarantee", level: 2 },
+      { id: "privacy-token-lifecycle", title: "Token Lifecycle & Redaction", level: 2 },
+      { id: "privacy-sandboxed-storage", title: "Local Sandboxed Storage", level: 2 }
     ],
     "network-audit": [
-      { id: "audit-endpoints", title: "Audited GitHub Endpoints", level: 2 },
-      { id: "audit-git", title: "Direct Git Remotes", level: 2 }
+      { id: "network-audit-github-endpoints", title: "Audited GitHub Endpoints", level: 2 },
+      { id: "network-audit-git-remotes", title: "Direct Git Remotes", level: 2 }
     ]
   };
 
@@ -1724,7 +1723,7 @@ function DocsApp() {
           el("p", { className: "text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6" },
             "A fast, lightweight contribution workspace manager for GitHub issues and pull requests designed for open-source contributors (such as Google Summer of Code, Hacktoberfest, and day-to-day open-source maintainers)."
           ),
-          el("div", { id: "overview-metrics", className: "grid grid-cols-1 sm:grid-cols-3 gap-4 my-6" },
+          el("div", { id: "overview-key-metrics", className: "grid grid-cols-1 sm:grid-cols-3 gap-4 my-6" },
             el("div", { className: "p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/80 shadow-xs" },
               el("div", { className: "text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-1" }, "94.2%"),
               el("div", { className: "text-xs text-slate-600 dark:text-slate-400" }, "Bandwidth saved via blobless trees")
@@ -1738,11 +1737,11 @@ function DocsApp() {
               el("div", { className: "text-xs text-slate-600 dark:text-slate-400" }, "Telemetry, cookies, or tracking")
             )
           ),
-          el("h2", { id: "overview-problem", className: "text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-3" }, "The Problem"),
+          el("h2", { id: "overview-problem-statement", className: "text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-3" }, "The Problem"),
           el("p", { className: "text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4" },
             "When contributing to open-source repositories, developers frequently clone massive git repositories (often 1GB–10GB) just to fix a single bug or submit a small pull request. This leads to wasted bandwidth downloading years of untouched blobs, redundant copies filling local hard drives, and slow onboarding."
           ),
-          el("h2", { id: "overview-solution", className: "text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-3" }, "The Solution"),
+          el("h2", { id: "overview-solution-architecture", className: "text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-3" }, "The Solution"),
           el("p", { className: "text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4" },
             el("code", { className: "text-xs bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-1.5 py-0.5 rounded font-mono" }, "gsoc-contrib"),
             " creates instant, isolated, lightweight workspaces using Git blobless checkouts (",
@@ -1757,7 +1756,7 @@ function DocsApp() {
           el("div", { className: "text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1 font-mono" }, "Setup"),
           el("h2", { className: "text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4" }, "Installation & Execution"),
 
-          el("h3", { id: "install-npx", className: "text-lg font-semibold text-slate-900 dark:text-white mb-2" }, "Option 1: Instant Runner (Zero Installation Required)"),
+          el("h3", { id: "installation-instant-runner", className: "text-lg font-semibold text-slate-900 dark:text-white mb-2" }, "Option 1: Instant Runner (Zero Installation Required)"),
           el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Run commands on demand using your favorite package runner without installing binaries globally:"),
           el(TabbedCodeBlock, {
             tabs: [
@@ -1768,7 +1767,7 @@ function DocsApp() {
             ]
           }),
 
-          el("h3", { id: "install-npm", className: "text-lg font-semibold text-slate-900 dark:text-white mt-8 mb-2" }, "Option 2: Global Installation"),
+          el("h3", { id: "installation-global-install", className: "text-lg font-semibold text-slate-900 dark:text-white mt-8 mb-2" }, "Option 2: Global Installation"),
           el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Install the `contrib` and `gsoc-contrib` binaries globally into your system PATH:"),
           el(TabbedCodeBlock, {
             tabs: [
@@ -1780,7 +1779,7 @@ function DocsApp() {
             ]
           }),
 
-          el("h3", { id: "install-prereqs", className: "text-lg font-semibold text-slate-900 dark:text-white mt-8 mb-2" }, "System Prerequisites"),
+          el("h3", { id: "installation-system-prerequisites", className: "text-lg font-semibold text-slate-900 dark:text-white mt-8 mb-2" }, "System Prerequisites"),
           el(Callout, { type: "warning", title: "Git Version Requirement" },
             "Make sure your system Git version is >= 2.25.0. Blobless clones (`--filter=blob:none`) and cone-mode sparse-checkouts require Git 2.25 or higher."
           ),
@@ -1798,32 +1797,32 @@ function DocsApp() {
           el("h2", { className: "text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4" }, "Quick Start Tutorial"),
           el("div", { className: "space-y-6" },
             el("div", null,
-              el("h3", { id: "qs-1", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "1. Verify Environment"),
+              el("h3", { id: "quickstart-verify-environment", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "1. Verify Environment"),
               el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Run init to inspect Node.js, Git, storage paths, and GitHub API rate limits:"),
               el(CodeBlock, { code: "contrib init" })
             ),
             el("div", null,
-              el("h3", { id: "qs-2", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "2. Search for First Contribution Tasks"),
+              el("h3", { id: "quickstart-search-tasks", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "2. Search for First Contribution Tasks"),
               el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Find beginner-friendly issues in any open-source repo:"),
               el(CodeBlock, { code: "contrib search \"good first issue\" --repo psf/requests" })
             ),
             el("div", null,
-              el("h3", { id: "qs-3", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "3. Spawn an Instant Workspace"),
+              el("h3", { id: "quickstart-spawn-workspace", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "3. Spawn an Instant Workspace"),
               el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Create an isolated blobless workspace with auto-generated context:"),
               el(CodeBlock, { code: "contrib start https://github.com/psf/requests/issues/6000 --worktree --install" })
             ),
             el("div", null,
-              el("h3", { id: "qs-4", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "4. Open in Your Favorite Editor"),
+              el("h3", { id: "quickstart-launch-editor", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "4. Open in Your Favorite Editor"),
               el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Launch directly into Cursor, VS Code, Zed, Antigravity, or terminal editors:"),
               el(CodeBlock, { code: "contrib open --cursor" })
             ),
             el("div", null,
-              el("h3", { id: "qs-5", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "5. Synchronize with Upstream Changes"),
+              el("h3", { id: "quickstart-sync-upstream", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "5. Synchronize with Upstream Changes"),
               el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Fetch and cleanly rebase your branch on upstream/main:"),
               el(CodeBlock, { code: "contrib sync --push" })
             ),
             el("div", null,
-              el("h3", { id: "qs-6", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "6. Submit Your Pull Request"),
+              el("h3", { id: "quickstart-submit-pull-request", className: "text-base font-bold text-slate-900 dark:text-white mb-1" }, "6. Submit Your Pull Request"),
               el("p", { className: "text-sm text-slate-600 dark:text-slate-300 mb-2" }, "Verify clean working trees and generate a 1-click GitHub PR link:"),
               el(CodeBlock, { code: "contrib submit" })
             )
@@ -2155,21 +2154,22 @@ function DocsApp() {
         el("section", { id: "privacy-security", className: "mb-16 pt-6 border-t border-slate-100 dark:border-slate-800/80 scroll-mt-24" },
           el("div", { className: "text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1 font-mono" }, "Security Guarantee"),
           el("h2", { className: "text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-4" }, "Privacy & Security Policy"),
-          el(Callout, { type: "security", title: "Zero Telemetry & Local Containment" },
-            "`gsoc-contrib` is built with a strict privacy-first, local-first architecture. It does NOT collect, transmit, store, or log personal information, IP addresses, tracking metrics, or crash telemetry."
+          el("div", { id: "privacy-zero-telemetry" },
+            el(Callout, { type: "security", title: "Zero Telemetry & Local Containment" },
+              "`gsoc-contrib` is built with a strict privacy-first, local-first architecture. It does NOT collect, transmit, store, or log personal information, IP addresses, tracking metrics, or crash telemetry."
+            )
           ),
           el("div", { className: "space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-4" },
-            el("p", null, el("strong", null, "No External Backend:"), " There are no servers, telemetry beacons, or databases operated by this project."),
-            el("p", null, el("strong", null, "In-Memory Token Lifecycle:"), " GitHub authentication tokens are held in memory only for the duration of the command and transmitted strictly over HTTPS directly to GitHub's official REST API."),
-            el("p", null, el("strong", null, "Automated Credential Redaction:"), " Built-in scrubbers automatically redact GitHub Personal Access Tokens and embedded git credentials from all logs and outputs.")
+            el("p", { id: "privacy-token-lifecycle" }, el("strong", null, "In-Memory Token Lifecycle:"), " GitHub authentication tokens are held in memory only for the duration of the command and transmitted strictly over HTTPS directly to GitHub's official REST API."),
+            el("p", { id: "privacy-sandboxed-storage" }, el("strong", null, "Automated Credential Redaction & Local Sandboxing:"), " Built-in scrubbers automatically redact GitHub Personal Access Tokens and embedded git credentials from all logs and outputs into isolated local paths.")
           ),
           el(PageNavigationFooter, { currentId: "privacy-security", navItems: allNavItems, onNavigate: handleSelectSection })
         ),
 
         // SECTION: Network Request Audit
         el("section", { id: "network-audit", className: "mb-16 pt-6 border-t border-slate-100 dark:border-slate-800/80 scroll-mt-24" },
-          el("h3", { className: "text-xl font-bold text-slate-900 dark:text-white mb-3" }, "Network Request Audit"),
-          el("p", { className: "text-xs text-slate-500 dark:text-slate-400 mb-4" }, "All outbound network requests are strictly limited to official GitHub endpoints or Git remotes:"),
+          el("h3", { id: "network-audit-github-endpoints", className: "text-xl font-bold text-slate-900 dark:text-white mb-3" }, "Network Request Audit"),
+          el("p", { id: "network-audit-git-remotes", className: "text-xs text-slate-500 dark:text-slate-400 mb-4" }, "All outbound network requests are strictly limited to official GitHub endpoints or Git remotes:"),
           el("div", { className: "overflow-x-auto" },
             el("table", { className: "w-full text-xs text-left border border-slate-200 dark:border-slate-700/80 rounded-lg overflow-hidden" },
               el("thead", { className: "bg-slate-50 dark:bg-slate-800/90 border-b border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-100 font-bold" },
