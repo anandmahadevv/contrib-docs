@@ -521,19 +521,19 @@ const TerminalShowcase = () => {
           ),
           el("div", { className: "divide-y divide-slate-800/60 font-mono text-[11px] sm:text-xs" },
             el("div", { className: "py-1.5 flex justify-between items-center" },
-              el("span", { className: "text-slate-200 font-bold" }, "[1] psf/requests #6000"),
+              el("span", { className: "text-slate-200 font-bold" }, "[1] psf/requests / 6000"),
               el("span", { className: "text-slate-400" }, "branch: issue_6000"),
               el("span", { className: "text-emerald-400" }, "● clean"),
               el("span", { className: "text-slate-500" }, "[Enter: Open] [p: PR]")
             ),
             el("div", { className: "py-1.5 flex justify-between items-center" },
-              el("span", { className: "text-slate-200 font-bold" }, "[2] facebook/react #28000"),
+              el("span", { className: "text-slate-200 font-bold" }, "[2] facebook/react / 28000"),
               el("span", { className: "text-slate-400" }, "branch: issue_28000"),
               el("span", { className: "text-amber-400" }, "● 2 files modified"),
               el("span", { className: "text-slate-500" }, "[Enter: Open] [d: Diff]")
             ),
             el("div", { className: "py-1.5 flex justify-between items-center" },
-              el("span", { className: "text-slate-200 font-bold" }, "[3] torvalds/linux #124"),
+              el("span", { className: "text-slate-200 font-bold" }, "[3] torvalds/linux / 124"),
               el("span", { className: "text-slate-400" }, "branch: pci_fix"),
               el("span", { className: "text-emerald-400" }, "● clean"),
               el("span", { className: "text-slate-500" }, "[Enter: Open] [c: Prune]")
@@ -576,7 +576,7 @@ const TerminalShowcase = () => {
             el("span", { className: "ml-2 px-1.5 py-0.2 bg-purple-950 text-purple-400 rounded text-[10px]" }, "tests")
           )
         ),
-        el("div", { className: "text-slate-400 text-xs" }, "💡 Tip: Run ", el("code", { className: "text-emerald-400" }, "contrib start psf/requests#6210"), " to start immediately!")
+        el("div", { className: "text-slate-400 text-xs" }, "💡 Tip: Run ", el("code", { className: "text-emerald-400" }, "contrib start psf/requests/6210"), " to start immediately!")
       )
     )
   );
@@ -699,37 +699,37 @@ const TroubleshootingFAQ = () => {
       q: "How do I run contrib behind a corporate proxy or corporate VPN?",
       cat: "Proxy & Network",
       a: "contrib respects standard HTTP_PROXY and HTTPS_PROXY environment variables. If your corporate proxy intercepts SSL traffic with a custom internal CA certificate, set Git and Node proxy configurations as follows:",
-      code: "export HTTP_PROXY=\"http://proxy.mycorp.com:8080\"\nexport HTTPS_PROXY=\"http://proxy.mycorp.com:8080\"\n\n# Configure git to use corporate CA certificate bundle\ngit config --global http.sslCAInfo /path/to/corporate-ca.crt\n\n# Or for Node.js corporate trust store\nexport NODE_EXTRA_CA_CERTS=\"/path/to/corporate-ca.crt\""
+      code: "export HTTP_PROXY=\"http://proxy.mycorp.com:8080\"\nexport HTTPS_PROXY=\"http://proxy.mycorp.com:8080\"\n\n// Configure git to use corporate CA certificate bundle\ngit config --global http.sslCAInfo /path/to/corporate-ca.crt\n\n// Or for Node.js corporate trust store\nexport NODE_EXTRA_CA_CERTS=\"/path/to/corporate-ca.crt\""
     },
     {
       q: "What should I do if I hit GitHub API rate limits (HTTP 403 / 429)?",
       cat: "Rate Limits",
       a: "Unauthenticated requests to GitHub's public REST API are restricted to 60 requests per hour per IP. By providing an authenticated token, your rate limit increases to 5,000 requests per hour. You can configure this via GitHub CLI or environment variables:",
-      code: "# Option 1: Authenticate with GitHub CLI (Easiest)\ngh auth login\n\n# Option 2: Set standard GitHub Personal Access Token\nexport GITHUB_TOKEN=\"ghp_yourPersonalAccessTokenHere\"\n\n# Option 3: Run contrib interactive setup wizard\ncontrib init"
+      code: "// Option 1: Authenticate with GitHub CLI (Easiest)\ngh auth login\n\n// Option 2: Set standard GitHub Personal Access Token\nexport GITHUB_TOKEN=\"ghp_yourPersonalAccessTokenHere\"\n\n// Option 3: Run contrib interactive setup wizard\ncontrib init"
     },
     {
       q: "What happens if a network drop or interruption corrupts a worktree checkout?",
       cat: "Git & Worktrees",
       a: "Because contrib isolates workspaces as Git worktrees linked to a centralized bare repository (~/.contrib/cache), you never have to re-clone the entire repository if a connection drops. Simply repair or prune the worktree:",
-      code: "# Run contrib built-in diagnostics and repair\ncontrib doctor --repair\n\n# Or manually prune broken git worktree references\ngit -C ~/.contrib/cache/<owner>__<repo>.git worktree prune -v\n\n# Resume or recreate workspace\ncontrib start <url> --worktree"
+      code: "// Run contrib built-in diagnostics and repair\ncontrib doctor --repair\n\n// Or manually prune broken git worktree references\ngit -C ~/.contrib/cache/<owner>__<repo>.git worktree prune -v\n\n// Resume or recreate workspace\ncontrib start <url> --worktree"
     },
     {
       q: "I see an error: 'fatal: --filter=blob:none requires git >= 2.25.0'. How do I upgrade?",
       cat: "Git & Worktrees",
       a: "Blobless clones (--filter=blob:none) and cone-mode sparse-checkouts were stabilized in Git 2.25.0. Make sure your system Git meets this baseline:",
-      code: "# macOS (Homebrew)\nbrew install git\n\n# Ubuntu / Debian Linux\nsudo add-apt-repository ppa:git-core/ppa -y\nsudo apt update && sudo apt install -y git\n\n# Windows (winget or Git for Windows)\nwinget install --id Git.Git -e --source winget"
+      code: "// macOS (Homebrew)\nbrew install git\n\n// Ubuntu / Debian Linux\nsudo add-apt-repository ppa:git-core/ppa -y\nsudo apt update && sudo apt install -y git\n\n// Windows (winget or Git for Windows)\nwinget install --id Git.Git -e --source winget"
     },
     {
       q: "Windows: 'Filename too long' error when creating deep paths.",
       cat: "Windows",
       a: "Windows has an ancient 260-character path limit (MAX_PATH). Modern Git supports long paths if core.longpaths is enabled in the global git configuration:",
-      code: "# Run in Administrator PowerShell or normal terminal:\ngit config --system core.longpaths true\n# Or globally for your user:\ngit config --global core.longpaths true"
+      code: "// Run in Administrator PowerShell or normal terminal:\ngit config --system core.longpaths true\n// Or globally for your user:\ngit config --global core.longpaths true"
     },
     {
       q: "How do I safely clean up all workspaces and reclaim all local disk space?",
       cat: "Git & Worktrees",
       a: "Use contrib cleanup. By default, it runs safely without deleting dirty workspaces containing uncommitted code. You can preview deletions with --dry-run or force removal:",
-      code: "# Preview what will be deleted and how many GB will be reclaimed\ncontrib cleanup --all --dry-run\n\n# Remove all clean workspaces and prune bare cache\ncontrib cleanup --all\n\n# Force cleanup including dirty workspaces\ncontrib cleanup --all --force"
+      code: "// Preview what will be deleted and how many GB will be reclaimed\ncontrib cleanup --all --dry-run\n\n// Remove all clean workspaces and prune bare cache\ncontrib cleanup --all\n\n// Force cleanup including dirty workspaces\ncontrib cleanup --all --force"
     }
   ];
 
@@ -876,7 +876,7 @@ const CookbookRecipes = () => {
         "When fixing a localized bug in a massive monorepo, checking out all 50,000 files is wasteful. Combine blobless cloning with cone sparse-checkout to restrict your local disk to only the target package:"
       ),
       el(CodeBlock, {
-        code: "# Only checkout pkg/kubelet and vendor dependencies\ncontrib start kubernetes/kubernetes#112200 --worktree --sparse \"pkg/kubelet,pkg/apis\"\n\n# Your worktree only contains files in those two directories,\n# saving 98.7% of local disk space and compilation scanning overhead!"
+        code: "// Only checkout pkg/kubelet and vendor dependencies\ncontrib start kubernetes/kubernetes/112200 --worktree --sparse \"pkg/kubelet,pkg/apis\"\n\n// Your worktree only contains files in those two directories,\n// saving 98.7% of local disk space and compilation scanning overhead!"
       })
     ),
     el("div", { className: "p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs" },
@@ -889,7 +889,7 @@ const CookbookRecipes = () => {
         "Traditional git forces you to git stash or commit half-finished work whenever you switch branches. With contrib worktrees, each issue lives in an isolated filesystem directory pointing to the same local git cache:"
       ),
       el(CodeBlock, {
-        code: "# Terminal 1: Fix bug on issue 101\ncontrib start psf/requests#101 --worktree\n\n# Terminal 2: Review PR 205 in parallel\ncontrib start psf/requests#205 --worktree\n\n# Terminal 3: Switch between them instantly with gcd\ngcd requests_101\ngcd requests_205"
+        code: "// Terminal 1: Fix bug on issue 101\ncontrib start psf/requests/101 --worktree\n\n// Terminal 2: Review PR 205 in parallel\ncontrib start psf/requests/205 --worktree\n\n// Terminal 3: Switch between them instantly with gcd\ngcd requests_101\ngcd requests_205"
       })
     ),
     el("div", { className: "p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs" },
@@ -902,7 +902,7 @@ const CookbookRecipes = () => {
         "In languages like Rust or C++, compiling a new workspace from scratch can take 15 minutes. Share your compiler artifact cache across all contrib worktrees via environment variables:"
       ),
       el(CodeBlock, {
-        code: "# For Rust: Point all worktrees to a shared CARGO_TARGET_DIR\nexport CARGO_TARGET_DIR=\"$HOME/.contrib/build_cache/cargo_target\"\n\n# For Go: Share module cache automatically\nexport GOCACHE=\"$HOME/.contrib/build_cache/go_cache\"\n\n# Now creating a new worktree compiles in seconds by reusing cached object artifacts!"
+        code: "// For Rust: Point all worktrees to a shared CARGO_TARGET_DIR\nexport CARGO_TARGET_DIR=\"$HOME/.contrib/build_cache/cargo_target\"\n\n// For Go: Share module cache automatically\nexport GOCACHE=\"$HOME/.contrib/build_cache/go_cache\"\n\n// Now creating a new worktree compiles in seconds by reusing cached object artifacts!"
       })
     ),
     el("div", { className: "p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs" },
@@ -915,7 +915,7 @@ const CookbookRecipes = () => {
         "You can run contrib headlessly in CI scripts to set up automated testbeds for reported issues:"
       ),
       el(CodeBlock, {
-        code: "# Headless mode: dry-run inspection without opening editors\ncontrib start https://github.com/owner/repo/issues/42 --no-open --worktree\n\n# Verify dependencies and run tests directly in the isolated workspace\ncd ~/.contrib/workspaces/owner__repo__issue_42\nnpm test"
+        code: "// Headless mode: dry-run inspection without opening editors\ncontrib start https://github.com/owner/repo/issues/42 --no-open --worktree\n\n// Verify dependencies and run tests directly in the isolated workspace\ncd ~/.contrib/workspaces/owner__repo__issue_42\nnpm test"
       })
     )
   );
@@ -960,7 +960,7 @@ const ContributingGuide = () => {
     ),
     el("h3", { id: "contributing-running-tests", className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Running Tests"),
     el(CodeBlock, {
-      code: "# Run Python pytest suite\npytest\n\n# Run Node.js test suite\nnpm test\n\n# Verify code formatting & typing\npytest --cov=contrib"
+      code: "// Run Python pytest suite\npytest\n\n// Run Node.js test suite\nnpm test\n\n// Verify code formatting & typing\npytest --cov=contrib"
     }),
     el("h3", { id: "contributing-submitting-pr", className: "text-lg font-bold text-slate-900 dark:text-white mt-6 mb-2" }, "Submitting Your Changes"),
     el("p", { className: "text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3" },
@@ -1925,7 +1925,7 @@ function DocsApp() {
             el("div", { className: "p-2 bg-slate-50 dark:bg-slate-900/90 rounded border border-slate-200 dark:border-slate-800" }, "--web (Browser)")
           ),
           el(Callout, { type: "tip", title: "Shell Integration Shortcut" },
-            "Use `contrib open -p` to print only the path. You can jump directly in your terminal using: `cd $(contrib open psf/requests#6000 -p)`"
+            "Use `contrib open -p` to print only the path. You can jump directly in your terminal using: `cd $(contrib open psf/requests/6000 -p)`"
           ),
           el(PageNavigationFooter, { currentId: "cmd-open", navItems: allNavItems, onNavigate: handleSelectSection })
         ),
@@ -2091,7 +2091,7 @@ function DocsApp() {
           el("p", { className: "text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4" },
             "Installs the `gcd` shell function for instant terminal directory jumping with tab-completion."
           ),
-          el(CodeBlock, { code: "contrib alias --install\n\n# Usage:\ngcd requests<TAB>" }),
+          el(CodeBlock, { code: "contrib alias --install\n\n// Usage:\ngcd requests<TAB>" }),
           el(PageNavigationFooter, { currentId: "cmd-alias", navItems: allNavItems, onNavigate: handleSelectSection })
         ),
 
