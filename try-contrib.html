@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Try gsoc-contrib — Sub-Second Open Source Workspace Engine</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #090d16;
+      color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border {
+      position: relative;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(168, 85, 247, 0.2));
+      padding: 1px;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-blue-600 selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function TryContribLanding() {
+      const [copiedCmd, setCopiedCmd] = useState('');
+
+      const copyToClipboard = (cmd) => {
+        navigator.clipboard?.writeText(cmd);
+        setCopiedCmd(cmd);
+        setTimeout(() => setCopiedCmd(''), 2000);
+      };
+
+      return (
+        <div className="min-h-screen flex flex-col justify-between">
+          {/* Header */}
+          <header className="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-blue-500/20">
+                🚀
+              </div>
+              <div>
+                <span className="font-extrabold text-white text-lg tracking-tight">gsoc-contrib</span>
+                <span className="ml-2 text-xs bg-blue-950 text-blue-300 font-mono px-2 py-0.5 rounded-full border border-blue-800">
+                  v0.5.2
+                </span>
+              </div>
+            </div>
+
+            <nav className="flex items-center gap-4 text-xs font-mono">
+              <a href="/" className="text-slate-400 hover:text-white transition-colors">Documentation</a>
+              <a href="https://github.com/anandmahadevv/contrib-cli" target="_blank" className="text-slate-400 hover:text-white transition-colors">GitHub ↗</a>
+              <a href="https://www.npmjs.com/package/gsoc-contrib" target="_blank" className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg transition-colors">npm install</a>
+            </nav>
+          </header>
+
+          {/* Hero Section */}
+          <main className="max-w-6xl mx-auto px-6 py-16 text-center space-y-12 my-auto">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold font-mono bg-blue-950/80 text-blue-300 border border-blue-800">
+                ✨ Engineers Day Expo Showcase Edition
+              </div>
+
+              <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                From 3-Minute Clones to <br />
+                <span className="gradient-text">Sub-Second AI Workspaces</span>
+              </h1>
+
+              <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                Fast, lightweight GitHub contribution workspace manager. Eliminates multi-gigabyte clones with Git blobless checkouts & matches you with top GSoC organizations.
+              </p>
+            </div>
+
+            {/* Quick Command Launcher Box */}
+            <div className="max-w-2xl mx-auto p-1 rounded-2xl bg-gradient-to-r from-blue-600/50 via-purple-600/50 to-blue-600/50 shadow-2xl">
+              <div className="bg-slate-900/95 p-4 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div className="font-mono text-sm text-sky-300 flex items-center gap-2">
+                  <span className="text-slate-500">$</span>
+                  <span>npx gsoc-contrib@latest recommend</span>
+                </div>
+                <button
+                  onClick={() => copyToClipboard('npx gsoc-contrib@latest recommend')}
+                  className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-mono font-bold text-xs rounded-lg transition-colors cursor-pointer shrink-0"
+                >
+                  {copiedCmd ? '✓ Copied!' : 'Copy Command'}
+                </button>
+              </div>
+            </div>
+
+            {/* Key Metric Counters */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-center pt-6">
+              <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+                <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-mono">0.38s</div>
+                <div className="text-xs text-slate-400 font-medium mt-1">Workspace Boot Time</div>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+                <div className="text-3xl sm:text-4xl font-black text-blue-400 font-mono">98.8%</div>
+                <div className="text-xs text-slate-400 font-medium mt-1">Bandwidth Savings</div>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80">
+                <div className="text-3xl sm:text-4xl font-black text-purple-400 font-mono">200+</div>
+                <div className="text-xs text-slate-400 font-medium mt-1">GSoC Orgs Matched</div>
+              </div>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto pt-8">
+              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-blue-500/50 transition-all space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-blue-950 text-blue-400 flex items-center justify-center text-xl font-bold border border-blue-800">⚡</div>
+                <h3 className="text-lg font-bold text-white">Blobless Git Worktrees</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Downloads commit trees on demand with <code className="text-sky-300">--filter=blob:none</code>, bypassing multi-gigabyte commit histories.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-purple-500/50 transition-all space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 flex items-center justify-center text-xl font-bold border border-purple-800">🧠</div>
+                <h3 className="text-lg font-bold text-white">Smart GSoC Project Matcher</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Calculates weighted match scores based on tech stack, domain interests, and beginner friendliness ratings.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/50 transition-all space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 flex items-center justify-center text-xl font-bold border border-emerald-800">🤖</div>
+                <h3 className="text-lg font-bold text-white">Automated AI Context Ingestion</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Generates <code className="text-emerald-300">.contrib/ISSUE.md</code> and pre-formatted <code className="text-emerald-300">AI_PROMPT.md</code> tailored for AI coding assistants.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-sky-500/50 transition-all space-y-2">
+                <div className="w-10 h-10 rounded-xl bg-sky-950 text-sky-400 flex items-center justify-center text-xl font-bold border border-sky-800">🔒</div>
+                <h3 className="text-lg font-bold text-white">Multi-Identity SSH Manager</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Switch personal, work, and open-source Git authors and SSH keys on a per-workspace basis cleanly.
+                </p>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="pt-6 flex flex-wrap items-center justify-center gap-4">
+              <a href="/" className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase font-mono tracking-wider transition-colors shadow-lg shadow-blue-500/20">
+                Explore Full Documentation ↗
+              </a>
+              <a href="https://github.com/anandmahadevv/contrib-cli" target="_blank" className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold text-xs uppercase font-mono tracking-wider transition-colors">
+                View GitHub Source ↗
+              </a>
+            </div>
+          </main>
+
+          {/* Footer */}
+          <footer className="border-t border-slate-800/80 py-6 px-6 text-center text-xs text-slate-500 font-mono">
+            gsoc-contrib — Lightweight Open Source Workspace Manager | MIT License
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<TryContribLanding />);
+  </script>
+</body>
+</html>
