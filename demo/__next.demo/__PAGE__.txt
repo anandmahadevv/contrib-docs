@@ -1,10 +1,11 @@
 1:"$Sreact.fragment"
-2:I[92753,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/e9069482894100c8.js"],"Navbar"]
-3:I[54233,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/e9069482894100c8.js"],"HeroSection"]
-4:I[82781,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/e9069482894100c8.js"],"AgentCaseStudy"]
-5:I[85452,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/e9069482894100c8.js"],"BuildingSection"]
-6:I[72931,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/e9069482894100c8.js"],"Footer"]
-7:I[50777,["/_next/static/chunks/df33fb078df685e1.js"],"OutletBoundary"]
-8:"$Sreact.suspense"
-0:{"buildId":"jzv3f22i55SKUrpzIoaPJ","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen dot-grid-bg","children":[["$","$L2",null,{}],["$","main",null,{"className":"pt-6","children":[["$","div",null,{"className":"w-full px-6 py-4 bg-[#ea580c] text-background font-mono text-xs font-bold text-center uppercase tracking-widest","children":"🎬 DEMO SHOWCASE — GSOC-CONTRIB v0.5.3 | ZERO COLD-START WORKSPACE ENGINE"}],["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}]]}],["$","$L6",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/e9069482894100c8.js","async":true}]],["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],"loading":null,"isPartial":false}
-9:null
+2:I[92753,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/537681853b8e6455.js","/_next/static/chunks/9696c0d438ce4041.js"],"Navbar"]
+3:I[4873,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/537681853b8e6455.js","/_next/static/chunks/9696c0d438ce4041.js"],"DemoVideoPlayer"]
+4:I[54233,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/537681853b8e6455.js","/_next/static/chunks/9696c0d438ce4041.js"],"HeroSection"]
+5:I[82781,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/537681853b8e6455.js","/_next/static/chunks/9696c0d438ce4041.js"],"AgentCaseStudy"]
+6:I[85452,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/537681853b8e6455.js","/_next/static/chunks/9696c0d438ce4041.js"],"BuildingSection"]
+7:I[72931,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/537681853b8e6455.js","/_next/static/chunks/9696c0d438ce4041.js"],"Footer"]
+8:I[50777,["/_next/static/chunks/df33fb078df685e1.js"],"OutletBoundary"]
+9:"$Sreact.suspense"
+0:{"buildId":"oMGvWQ7Srf4H7KBn1wTVE","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen dot-grid-bg","children":[["$","$L2",null,{}],["$","main",null,{"className":"pt-6","children":[["$","div",null,{"className":"w-full px-6 py-4 bg-[#ea580c] text-background font-mono text-xs font-bold text-center uppercase tracking-widest","children":"🎬 DEMO SHOWCASE — GSOC-CONTRIB v0.5.3 | ZERO COLD-START WORKSPACE ENGINE"}],["$","div",null,{"className":"px-6","children":["$","$L3",null,{}]}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}]]}],["$","$L7",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/537681853b8e6455.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/9696c0d438ce4041.js","async":true}]],["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]]}],"loading":null,"isPartial":false}
+a:null
