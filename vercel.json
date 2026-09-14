@@ -9,6 +9,10 @@
       "destination": "/app.html"
     },
     {
+      "source": "/demo",
+      "destination": "/demo.html"
+    },
+    {
       "source": "/building",
       "destination": "/app.html"
     },
