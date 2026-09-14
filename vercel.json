@@ -5,6 +5,10 @@
   "cleanUrls": true,
   "rewrites": [
     {
+      "source": "/app",
+      "destination": "/app.html"
+    },
+    {
       "source": "/try-contrib",
       "destination": "/try-contrib.html"
     },
