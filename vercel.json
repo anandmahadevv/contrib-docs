@@ -9,6 +9,14 @@
       "destination": "/app.html"
     },
     {
+      "source": "/building",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/BuildingSection",
+      "destination": "/app.html"
+    },
+    {
       "source": "/try-contrib",
       "destination": "/try-contrib.html"
     },
