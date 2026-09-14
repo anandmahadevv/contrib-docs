@@ -1,13 +1,14 @@
 1:"$Sreact.fragment"
-2:I[92753,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"Navbar"]
-3:I[54233,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"HeroSection"]
-4:I[85452,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"BuildingSection"]
-5:I[8689,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"FeatureGrid"]
-6:I[20287,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"AboutSection"]
-7:I[14297,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"PricingSection"]
-8:I[97755,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"GlitchMarquee"]
-9:I[72931,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/51576c34e17d9fd4.js"],"Footer"]
-a:I[50777,["/_next/static/chunks/df33fb078df685e1.js"],"OutletBoundary"]
-b:"$Sreact.suspense"
-0:{"buildId":"lTvH23ykn3-JM88GZpDuS","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen dot-grid-bg","children":[["$","$L2",null,{}],["$","main",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}],["$","$L7",null,{}],["$","$L8",null,{}]]}],["$","$L9",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/51576c34e17d9fd4.js","async":true}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],"loading":null,"isPartial":false}
-c:null
+2:I[92753,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"Navbar"]
+3:I[54233,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"HeroSection"]
+4:I[85452,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"BuildingSection"]
+5:I[82781,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"AgentCaseStudy"]
+6:I[8689,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"FeatureGrid"]
+7:I[20287,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"AboutSection"]
+8:I[14297,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"PricingSection"]
+9:I[97755,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"GlitchMarquee"]
+a:I[72931,["/_next/static/chunks/cd7ae3a9920f2ead.js","/_next/static/chunks/510f56e2ae9dcdc0.js"],"Footer"]
+b:I[50777,["/_next/static/chunks/df33fb078df685e1.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+0:{"buildId":"8cjajXoU_6pO9BKCq9hbV","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen dot-grid-bg","children":[["$","$L2",null,{}],["$","main",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}],["$","$La",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/510f56e2ae9dcdc0.js","async":true}]],["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]]}],"loading":null,"isPartial":false}
+d:null
