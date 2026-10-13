@@ -1,0 +1,45 @@
+# Contrib CLI (gsoc-contrib)
+
+> Fast, lightweight contribution workspace manager for GitHub issues using Git blobless clones (`--filter=blob:none`) and sparse checkouts. Sub-3.4s setup, 95% bandwidth savings, and 90% disk space savings.
+
+## Overview
+
+Contrib CLI (`gsoc-contrib` on npm and PyPI, `contrib-cli` on GitHub) eliminates multi-gigabyte repository downloads when contributing to open source. Instead of running a full `git clone`, it initializes a blobless, sparse workspace specifically scoped to the target GitHub issue or PR and launches your editor with a pre-configured AI briefing package.
+
+## Core Features
+
+- **Zero-Clone Workspace Engine**: Uses Git blobless clones (`--filter=blob:none`) and sparse checkouts to spin up workspaces in under 3.4 seconds.
+- **Resource Savings**: Delivers 95.4% average bandwidth reduction and 91.2% local disk space reduction compared to standard git clone.
+- **AI GSOC & Issue Recommender**: Intelligent recommendation engine matching developer skills and programming languages with official GSoC organizations and good-first-issues (`contrib recommend`).
+- **Antigravity IDE & Editor Bridge**: Native flags to launch Antigravity IDE (`--agy`), VS Code (`--vscode`), Neovim (`--nvim`), Zed (`--zed`), and Cursor (`--cursor`).
+- **Structured AI Briefing Package**: Automatically produces `.contrib/context.json`, `.contrib/ISSUE.md`, and `.contrib/AI_PROMPT.md` for AI pair programmers, eliminating 80% of codebase discovery friction.
+
+## Quick Start & Installation
+
+```bash
+# Run instantly with npx
+npx gsoc-contrib start <issue-url> --agy
+
+# Global installation via npm
+npm install -g gsoc-contrib
+
+# Global installation via pip
+pip install gsoc-contrib
+```
+
+## Essential Commands
+
+- `contrib start <issue-url> [--agy|--vscode|--nvim]`: Create a lightweight workspace for a GitHub issue and launch the editor.
+- `contrib recommend [--lang python,js] [--level beginner]`: Discover matched open-source issues and GSoC organizations.
+- `contrib analyze <issue-url>`: Inspect issue metadata, linked PRs, and estimated file impact before cloning.
+- `contrib list`: List all active isolated workspaces.
+- `contrib clean`: Remove inactive workspaces and reclaim disk space.
+
+## Links & Documentation
+
+- [Official Website](https://cli.anandlabs.space/)
+- [Live Demo & Video](https://cli.anandlabs.space/demo)
+- [GitHub Repository](https://github.com/anandmahadevv/contrib-cli)
+- [npm Package](https://www.npmjs.com/package/gsoc-contrib)
+- [PyPI Package](https://pypi.org/project/gsoc-contrib/)
+- [Author Website](https://anandmahadev.in)
